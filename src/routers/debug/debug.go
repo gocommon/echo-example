@@ -8,6 +8,7 @@ import (
 	"github.com/labstack/echo"
 )
 
+// 实现注册路由方法
 var _ routers.RouterRegister = debugRouters
 
 func debugRouters(e *echo.Echo) {
@@ -16,6 +17,7 @@ func debugRouters(e *echo.Echo) {
 
 }
 
+// 注册到路由表
 func init() {
 	routers.Register(debugRouters)
 }
