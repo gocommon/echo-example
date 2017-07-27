@@ -40,8 +40,9 @@ func main() {
 	e.Debug = setting.Conf.Echo.Debug
 	e.HideBanner = setting.Conf.Echo.HideBanner
 
-	// 中间件
+	// 中间件 访问日志，写文件
 	e.Use(middleware.Logger())
+	e.Use(middleware.Recover())
 
 	// 统计错误处理
 
