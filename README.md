@@ -10,3 +10,6 @@
 - [ ] Loger zerolog 统计一log用例
 - [x] Responser 统计一返回值处理
 - [x] rotatefile 访问日志
+
+### 使用
+包管理用gb,请安装 https://github.com/constabulary/gb
