@@ -12,4 +12,8 @@
 - [x] rotatefile 访问日志
 
 ### 使用
+
 包管理用gb,请安装 https://github.com/constabulary/gb
+```bash
+./build.sh
+```
