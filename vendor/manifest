@@ -32,6 +32,12 @@
 			"branch": "master"
 		},
 		{
+			"importpath": "github.com/gocommon/zerolog",
+			"repository": "https://github.com/gocommon/zerolog",
+			"revision": "ccf0b4af6f708b81d1012e04c95afaa610ea2475",
+			"branch": "master"
+		},
+		{
 			"importpath": "github.com/labstack/echo",
 			"repository": "https://github.com/labstack/echo",
 			"revision": "0769b34b525bc20ac076b56cd16bc4eefc5a8db3",
@@ -78,6 +84,12 @@
 			"branch": "master"
 		},
 		{
+			"importpath": "github.com/rs/xid",
+			"repository": "https://github.com/rs/xid",
+			"revision": "02dd45c33376f85d1064355dc790dcc4850596b1",
+			"branch": "master"
+		},
+		{
 			"importpath": "github.com/valyala/bytebufferpool",
 			"repository": "https://github.com/valyala/bytebufferpool",
 			"revision": "e746df99fe4a3986f4d4f79e13c1e0117ce9c2f7",
@@ -88,6 +100,13 @@
 			"repository": "https://github.com/valyala/fasttemplate",
 			"revision": "dcecefd839c4193db0d35b88ec65b4c12d360ab0",
 			"branch": "master"
+		},
+		{
+			"importpath": "github.com/zenazn/goji/web/mutil",
+			"repository": "https://github.com/zenazn/goji",
+			"revision": "4d7077956293261309684d3cf1af673f773c6819",
+			"branch": "master",
+			"path": "/web/mutil"
 		},
 		{
 			"importpath": "golang.org/x/crypto/acme",

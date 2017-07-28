@@ -4,6 +4,8 @@ import (
 	"io/ioutil"
 	"os"
 
+	"modules/zerolog"
+
 	"github.com/BurntSushi/toml"
 )
 
@@ -11,6 +13,8 @@ import (
 type Config struct {
 	Version string
 	Echo    EchoService
+
+	ZeroLogs map[string]map[string]zerolog.Option
 }
 
 // EchoService EchoService
@@ -30,12 +34,23 @@ var Conf = newConfig()
 
 func newConfig() *Config {
 	// 配置默认值，写在这！
-	return &Config{Echo: EchoService{
-		// Debug:      true,
-		HideBanner: true,
-		Listen:     ":8899",
-		AccessLog:  true,
-	}}
+	return &Config{
+		Echo: EchoService{
+			// Debug:      true,
+			HideBanner: true,
+			Listen:     ":8899",
+			AccessLog:  true,
+		},
+		ZeroLogs: map[string]map[string]zerolog.Option{
+			"default": {
+				"console": {
+					Enable: true,
+					Mode:   "console",
+					Level:  "debug",
+				},
+			},
+		},
+	}
 }
 
 // InitConf InitConf 初始化配置

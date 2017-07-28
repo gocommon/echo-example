@@ -1,3 +1,27 @@
 [Echo]
 #AccessLogFile = true
 #AccessLogFilePath = "echo.log"
+
+
+
+[ZeroLogs.default.console]
+Enable = true
+Mode   = "console"
+Level  = "debug"
+
+[ZeroLogs.default.file]
+Enable = true
+Mode   = "file"
+Level  = "debug"
+FileName = "./log/default.log"
+
+[ZeroLogs.default.smtp]
+Enable = false
+Mode   = "smtp"
+Level  = "Error"	
+
+User      = ""
+Passwd    = ""
+Host      = ""
+Receivers = []
+Subject   = ""

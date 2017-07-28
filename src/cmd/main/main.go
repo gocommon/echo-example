@@ -10,6 +10,7 @@ import (
 	"setting"
 
 	"modules/validator"
+	"modules/zerolog"
 
 	"github.com/gocommon/rotatefile"
 	"github.com/labstack/echo/middleware"
@@ -32,7 +33,9 @@ func bootstrap() {
 	// 版本号
 	setting.Conf.Version = VER
 
-	log.Println(setting.Conf)
+	zerolog.InitLog(setting.Conf.ZeroLogs, zerolog.Timestamp(), zerolog.Version(setting.Conf.Version))
+
+	zerolog.Debug().Interface("conf", setting.Conf).Go()
 }
 
 func main() {
