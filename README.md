@@ -9,3 +9,4 @@
 - [x] Validator 参数验证
 - [ ] Loger zerolog 统计一log用例
 - [x] Responser 统计一返回值处理
+- [ ] rotatefile 访问日志

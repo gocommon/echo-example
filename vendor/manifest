@@ -26,6 +26,12 @@
 			"branch": "master"
 		},
 		{
+			"importpath": "github.com/gocommon/rotatefile",
+			"repository": "https://github.com/gocommon/rotatefile",
+			"revision": "f3af843f33cf6ae44f0aa72827e3ac24abae4ad7",
+			"branch": "master"
+		},
+		{
 			"importpath": "github.com/labstack/echo",
 			"repository": "https://github.com/labstack/echo",
 			"revision": "0769b34b525bc20ac076b56cd16bc4eefc5a8db3",

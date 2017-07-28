@@ -19,6 +19,10 @@ type EchoService struct {
 	HideBanner bool // 是否隐藏echo banner日志输出
 
 	Listen string
+
+	AccessLog         bool // 是否显示访问日志
+	AccessLogFile     bool
+	AccessLogFilePath string
 }
 
 // Conf Conf配置内容
@@ -27,9 +31,10 @@ var Conf = newConfig()
 func newConfig() *Config {
 	// 配置默认值，写在这！
 	return &Config{Echo: EchoService{
-		Debug:      true,
+		// Debug:      true,
 		HideBanner: true,
 		Listen:     ":8899",
+		AccessLog:  true,
 	}}
 }
 

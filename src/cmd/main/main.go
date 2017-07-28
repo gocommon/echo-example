@@ -11,6 +11,7 @@ import (
 
 	"modules/validator"
 
+	"github.com/gocommon/rotatefile"
 	"github.com/labstack/echo/middleware"
 
 	"github.com/labstack/echo"
@@ -46,9 +47,29 @@ func main() {
 	// 参数验证
 	e.Validator = validator.New()
 
-	// 中间件 访问日志，写文件
-	e.Use(middleware.Logger())
+	///////////////// 中间件 ////////////////
+	///									////
+
+	// 访问日志，写文件
+	if setting.Conf.Echo.AccessLog {
+		loggerConfig := middleware.DefaultLoggerConfig
+
+		if setting.Conf.Echo.AccessLogFile {
+			f, err := rotatefile.NewWriter(rotatefile.Options{Filename: setting.Conf.Echo.AccessLogFilePath})
+			defer f.Close()
+			loggerConfig.Output = f
+			if err != nil {
+				panic(err)
+			}
+		}
+
+		e.Use(middleware.LoggerWithConfig(loggerConfig))
+	}
+
 	e.Use(middleware.Recover())
+
+	////								////
+	///////////////// 中间件 ////////////////
 
 	// 统计错误处理
 	e.HTTPErrorHandler = func(err error, c echo.Context) {
