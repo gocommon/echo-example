@@ -7,7 +7,7 @@
 - [x] Setting 配置文件
 - [x] HTTPErrorHandler 统计一错误处理
 - [x] Validator 参数验证
-- [ ] Loger zerolog 统计一log用例
+- [x] Loger zerolog 统计一log用例
 - [x] Responser 统计一返回值处理
 - [x] rotatefile 访问日志
 
