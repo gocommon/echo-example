@@ -9,6 +9,8 @@ import (
 	"routers"
 	"setting"
 
+	"modules/validator"
+
 	"github.com/labstack/echo/middleware"
 
 	"github.com/labstack/echo"
@@ -40,6 +42,9 @@ func main() {
 	e := echo.New()
 	e.Debug = setting.Conf.Echo.Debug
 	e.HideBanner = setting.Conf.Echo.HideBanner
+
+	// 参数验证
+	e.Validator = validator.New()
 
 	// 中间件 访问日志，写文件
 	e.Use(middleware.Logger())
@@ -84,5 +89,6 @@ func main() {
 
 	log.Println(setting.Conf.Version)
 
+	// @todo tls
 	e.Start(setting.Conf.Echo.Listen)
 }

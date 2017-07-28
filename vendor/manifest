@@ -14,6 +14,18 @@
 			"branch": "master"
 		},
 		{
+			"importpath": "github.com/go-playground/locales",
+			"repository": "https://github.com/go-playground/locales",
+			"revision": "1e5f1161c6416a5ff48840eb8724a394e48cc534",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/go-playground/universal-translator",
+			"repository": "https://github.com/go-playground/universal-translator",
+			"revision": "71201497bace774495daed26a3874fd339e0b538",
+			"branch": "master"
+		},
+		{
 			"importpath": "github.com/labstack/echo",
 			"repository": "https://github.com/labstack/echo",
 			"revision": "0769b34b525bc20ac076b56cd16bc4eefc5a8db3",
@@ -84,6 +96,12 @@
 			"revision": "6914964337150723782436d56b3f21610a74ce7b",
 			"branch": "master",
 			"path": "/acme/autocert"
+		},
+		{
+			"importpath": "gopkg.in/go-playground/validator.v9",
+			"repository": "https://gopkg.in/go-playground/validator.v9",
+			"revision": "fb68f39656d7ebf8aa339ad4917aa0c260ecc237",
+			"branch": "master"
 		}
 	]
 }
