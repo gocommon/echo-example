@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"log"
+	"net/http"
 	"os"
 	"path/filepath"
 	"routers"
@@ -45,11 +46,43 @@ func main() {
 	e.Use(middleware.Recover())
 
 	// 统计错误处理
+	e.HTTPErrorHandler = func(err error, c echo.Context) {
+		var (
+			code = http.StatusInternalServerError
+			msg  interface{}
+		)
+
+		if he, ok := err.(*echo.HTTPError); ok {
+			code = he.Code
+			msg = he.Message
+		} else if e.Debug {
+			msg = err.Error()
+		} else {
+			msg = http.StatusText(code)
+		}
+		if _, ok := msg.(string); ok {
+			msg = echo.Map{"message": msg}
+		}
+
+		if !c.Response().Committed {
+			if c.Request().Method == echo.HEAD { // Issue #608
+				if err := c.NoContent(code); err != nil {
+					goto ERROR
+				}
+			} else {
+				if err := c.JSON(code, msg); err != nil {
+					goto ERROR
+				}
+			}
+		}
+	ERROR:
+		e.Logger.Error(err)
+	}
 
 	// 注册路由
 	routers.InitRouters(e)
 
 	log.Println(setting.Conf.Version)
 
-	e.Start(":8899")
+	e.Start(setting.Conf.Echo.Listen)
 }

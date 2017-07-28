@@ -17,6 +17,8 @@ type Config struct {
 type EchoService struct {
 	Debug      bool
 	HideBanner bool // 是否隐藏echo banner日志输出
+
+	Listen string
 }
 
 // Conf Conf配置内容
@@ -27,6 +29,7 @@ func newConfig() *Config {
 	return &Config{Echo: EchoService{
 		Debug:      true,
 		HideBanner: true,
+		Listen:     ":8899",
 	}}
 }
 
