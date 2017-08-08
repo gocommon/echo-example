@@ -27,6 +27,11 @@ type EchoService struct {
 	AccessLog         bool // 是否显示访问日志
 	AccessLogFile     bool
 	AccessLogFilePath string
+
+	CrosEnable       bool
+	CrosAllowOrigins []string
+
+	GzipEnable bool
 }
 
 // Conf Conf配置内容
@@ -40,6 +45,7 @@ func newConfig() *Config {
 			HideBanner: true,
 			Listen:     ":8899",
 			AccessLog:  true,
+			GzipEnable: true,
 		},
 		ZeroLogs: map[string]map[string]zerolog.Option{
 			"default": {

@@ -10,6 +10,8 @@
 - [x] Loger zerolog 统计一log用例
 - [x] Responser 统计一返回值处理
 - [x] rotatefile 访问日志
+- [x] graceful-shutdown   go1.8+
+- [x] cros 
 
 ### 使用
 

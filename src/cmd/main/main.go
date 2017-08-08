@@ -1,13 +1,15 @@
 package main
 
 import (
+	"context"
 	"flag"
-	"log"
 	"net/http"
 	"os"
+	"os/signal"
 	"path/filepath"
 	"routers"
 	"setting"
+	"time"
 
 	"modules/validator"
 	"modules/zerolog"
@@ -71,6 +73,17 @@ func main() {
 
 	e.Use(middleware.Recover())
 
+	if setting.Conf.Echo.CrosEnable {
+		e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+			AllowOrigins: setting.Conf.Echo.CrosAllowOrigins,
+			AllowMethods: []string{echo.GET, echo.PUT, echo.POST, echo.DELETE},
+		}))
+	}
+
+	if setting.Conf.Echo.GzipEnable {
+		e.Use(middleware.Gzip())
+	}
+
 	////								////
 	///////////////// 中间件 ////////////////
 
@@ -111,8 +124,23 @@ func main() {
 	// 注册路由
 	routers.InitRouters(e)
 
-	log.Println(setting.Conf.Version)
+	zerolog.Debug().Str("ver", setting.Conf.Version).Go()
 
-	// @todo tls
-	e.Start(setting.Conf.Echo.Listen)
+	// Start server
+	go func() {
+		if err := e.Start(setting.Conf.Echo.Listen); err != nil {
+			zerolog.Error().Err(err).Msg("echo start err")
+		}
+	}()
+
+	// Wait for interrupt signal to gracefully shutdown the server with
+	// a timeout of 10 seconds.
+	quit := make(chan os.Signal)
+	signal.Notify(quit, os.Interrupt)
+	<-quit
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	if err := e.Shutdown(ctx); err != nil {
+		zerolog.Error().Err(err).Msg("echo Shutdown err")
+	}
 }
